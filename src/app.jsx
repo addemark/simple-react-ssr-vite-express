@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react";
+import "./App.css";
+import FallbackLoading from "./components/loader/FallbackLoading.jsx";
+// import { Route, Routes } from "react-router-dom";
+// import { publicRoutes, privateRoutes, notFoundRoute } from "./routes";
+// import { useSelector } from "react-redux";
 
 const App = () => {
   const [count, setCount] = useState(0);

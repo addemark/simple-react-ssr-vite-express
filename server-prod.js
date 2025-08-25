@@ -13,7 +13,7 @@ app.use(
   )
 );
 
-app.use("*", async (_, res) => {
+app.use("/*", async (_, res) => {
   try {
     const template = fs.readFileSync("./dist/client/index.html", "utf-8");
     const { render } = await import("./dist/server/entry-server.js");
