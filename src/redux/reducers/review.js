@@ -7,7 +7,7 @@ import {
   REVIEW_SET_TYPE,
   REVIEW_FAILED,
 } from "@/redux/constants/reviewConstants";
-import { defaultLanguage } from "../../locales";
+import { defaultLanguage } from "@/locales";
 
 const initialState = {
   reviewData: {

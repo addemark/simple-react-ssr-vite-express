@@ -1,4 +1,3 @@
-import { ReviewStateType } from "@/redux/reducers/review";
 import * as types from "@/redux/constants/reviewConstants";
 
 export const setReviewDataAction = (review) => async (dispatch) => {

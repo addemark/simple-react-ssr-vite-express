@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 // const Orders = lazy(() => import("./pages/Orders"));
 // const SignUp = lazy(() => import("./pages/SignUp"));
 // const PhoneConfirmation = lazy(() => import("./pages/InsertCodePage"));
-// const CreateReview = lazy(() => import("./pages/CreateReviewPage"));
+import CreateReview from "./pages/review/CreateReviewPage";
 // const CreateAudioReview = lazy(() => import("./pages/CreateAudioReviewPage"));
 // const CreateTextReview = lazy(() => import("./pages/CreateTextReviewPage"));
 import NotFoundPage from "./pages/404/NotFoundPage";
@@ -28,10 +28,10 @@ export const publicRoutes = [
   //   path: "/phone-confirmation",
   //   element: () => <PhoneConfirmation />,
   // },
-  // {
-  //   path: "/new-review/:reviewId",
-  //   element: () => <CreateReview />,
-  // },
+  {
+    path: "/new-review/:reviewId",
+    element: () => <CreateReview />,
+  },
   // {
   //   path: "/new-audio-review/:reviewId",
   //   element: () => <CreateAudioReview />,

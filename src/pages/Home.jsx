@@ -86,9 +86,12 @@ const Home = function () {
         </button>
       </div>
       <Link
-        to={{ pathname: "/asd", search: `lang=${i18n.language.split("-")[0]}` }}
+        to={{
+          pathname: "/new-review/asd",
+          search: `lang=${i18n.language.split("-")[0]}`,
+        }}
       >
-        404Page
+        New-review
       </Link>
     </div>
   );
