@@ -14,7 +14,7 @@ app.use(
   )
 );
 
-app.use("/*", async (req, res) => {
+app.use("*", async (req, res) => {
   try {
     // Detect language from Accept-Language header or query parameter
     const acceptLanguage = req.headers["accept-language"];
@@ -30,6 +30,7 @@ app.use("/*", async (req, res) => {
       // Simple language detection from Accept-Language header
       if (acceptLanguage.includes("de")) language = "de";
       else if (acceptLanguage.includes("ro")) language = "ro";
+      else if (acceptLanguage.includes("en")) language = "en";
     }
 
     const template = fs.readFileSync("./dist/client/index.html", "utf-8");

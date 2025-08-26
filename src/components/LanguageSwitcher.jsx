@@ -1,8 +1,10 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router";
+import { LANG_QUERY } from "../locales";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const languages = [
     { code: "en", name: "English" },
@@ -11,6 +13,8 @@ const LanguageSwitcher = () => {
   ];
 
   const changeLanguage = (languageCode) => {
+    searchParams.set(LANG_QUERY, languageCode);
+    setSearchParams(searchParams);
     i18n.changeLanguage(languageCode);
   };
 

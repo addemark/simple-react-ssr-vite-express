@@ -2,11 +2,14 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
-import validTranslation, { defaultLanguage } from "./locales/index.js";
+import validTranslation, {
+  defaultLanguage,
+  LANG_QUERY,
+} from "./locales/index.js";
 
 const resources = {
-  "ro-RO": { translation: validTranslation.ro },
-  "en-US": { translation: validTranslation.en },
+  //   "ro-RO": { translation: validTranslation.ro },
+  //   "en-US": { translation: validTranslation.en },
   ro: { translation: validTranslation.ro },
   en: { translation: validTranslation.en },
 };
@@ -37,7 +40,8 @@ if (!isServer) {
     .init({
       ...i18nConfig,
       detection: {
-        order: ["localStorage", "navigator", "htmlTag"],
+        order: ["querystring", "localStorage", "navigator", "htmlTag"],
+        lookupQuerystring: LANG_QUERY,
         caches: ["localStorage"],
       },
     });

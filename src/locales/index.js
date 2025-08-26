@@ -10,4 +10,5 @@ const availableTranslation = {
 
 export const defaultLanguage = "en";
 export const availableLanguages = Object.keys(availableTranslation);
+export const LANG_QUERY = "lang";
 export default availableTranslation;

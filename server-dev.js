@@ -15,7 +15,7 @@ const vite = await createServer({
 
 app.use(vite.middlewares);
 
-app.use("/*", async (req, res) => {
+app.use("*", async (req, res) => {
   const url = req.originalUrl;
 
   try {
@@ -32,6 +32,7 @@ app.use("/*", async (req, res) => {
       // Simple language detection from Accept-Language header
       if (acceptLanguage.includes("ro")) language = "ro";
       else if (acceptLanguage.includes("de")) language = "de";
+      else if (acceptLanguage.includes("en")) language = "en";
     }
 
     const template = await vite.transformIndexHtml(

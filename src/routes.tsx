@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 // const CreateReview = lazy(() => import("./pages/CreateReviewPage"));
 // const CreateAudioReview = lazy(() => import("./pages/CreateAudioReviewPage"));
 // const CreateTextReview = lazy(() => import("./pages/CreateTextReviewPage"));
-// const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+import NotFoundPage from "./pages/404/NotFoundPage";
 // const EditReview = lazy(() => import("./pages/EditReviewPage"));
 
 export const publicRoutes = [
@@ -58,7 +58,7 @@ export const publicRoutes = [
 //   },
 // ];
 
-// export const notFoundRoute = {
-//   path: "*",
-//   element: () => <NotFoundPage />,
-// };
+export const notFoundRoute = {
+  path: "*",
+  element: () => <NotFoundPage />,
+};
