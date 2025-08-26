@@ -1,0 +1,13 @@
+{
+  "content": {
+    "header": "Welcome to our community!",
+    "confirmation": {
+      "header": "Phone number confirmation",
+      "info": "Please input the code sent to you via SMS to confirm the phone number",
+      "code": {
+        "message": "I did not received the code!",
+        "request": "Resend"
+      }
+    }
+  }
+}

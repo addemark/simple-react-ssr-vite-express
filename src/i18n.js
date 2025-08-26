@@ -1,0 +1,49 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import Backend from "i18next-http-backend";
+import validTranslation, { defaultLanguage } from "./locales/index.js";
+
+const resources = {
+  "ro-RO": { translation: validTranslation.ro },
+  "en-US": { translation: validTranslation.en },
+  ro: { translation: validTranslation.ro },
+  en: { translation: validTranslation.en },
+};
+
+// Check if we're running on the server
+const isServer = typeof window === "undefined";
+
+const i18nConfig = {
+  resources,
+  fallbackLng: defaultLanguage,
+  debug: process.env.NODE_ENV === "development",
+
+  interpolation: {
+    escapeValue: false, // React already does escaping
+  },
+
+  react: {
+    useSuspense: false, // Important for SSR
+  },
+};
+
+if (!isServer) {
+  // Client-side configuration
+  i18n
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      ...i18nConfig,
+      detection: {
+        order: ["localStorage", "navigator", "htmlTag"],
+        caches: ["localStorage"],
+      },
+    });
+} else {
+  // Server-side configuration
+  i18n.use(initReactI18next).init(i18nConfig);
+}
+
+export default i18n;

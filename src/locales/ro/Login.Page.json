@@ -1,0 +1,13 @@
+{
+  "content": {
+    "header": "Bine ați venit în comunitatea noastră!",
+    "confirmation": {
+      "header": "Confirmare număr",
+      "info": "Te rog , introdu codul primit prin sms, pentru confirmare",
+      "code": {
+        "message": "Nu am primit codul!",
+        "request": "Retrimite cod"
+      }
+    }
+  }
+}

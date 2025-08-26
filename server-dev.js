@@ -1,6 +1,7 @@
 import fs from "fs";
 import express from "express";
 import { createServer } from "vite";
+import { availableLanguages, defaultLanguage } from "./src/locales/index.js";
 
 const app = express();
 const port = process.env.PORT || 3030;
@@ -18,16 +19,32 @@ app.use("/*", async (req, res) => {
   const url = req.originalUrl;
 
   try {
+    // Detect language from Accept-Language header or query parameter
+    const acceptLanguage = req.headers["accept-language"];
+    const queryLang = req.query.lang;
+    console.log("*******Detected language:", queryLang || acceptLanguage);
+
+    let language = defaultLanguage; // default language
+
+    if (queryLang && availableLanguages.includes(queryLang)) {
+      language = queryLang;
+    } else if (acceptLanguage) {
+      // Simple language detection from Accept-Language header
+      if (acceptLanguage.includes("ro")) language = "ro";
+      else if (acceptLanguage.includes("de")) language = "de";
+    }
+
     const template = await vite.transformIndexHtml(
       url,
       fs.readFileSync("index.html", "utf-8")
     );
     const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
 
-    const html = template.replace(`<!--outlet-->`, render);
+    const html = template.replace(`<!--outlet-->`, render(url, language));
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
   } catch (error) {
-    res.status(500).end(error);
+    console.error("SSR Error:", error);
+    res.status(500).end(error.message || "Internal Server Error");
   }
 });
 

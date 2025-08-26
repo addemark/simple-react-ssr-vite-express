@@ -1,0 +1,31 @@
+{
+  "content": {
+    "editTitle": "Editează recenzia",
+    "pop": {
+      "title": " Vrei sa stergi recenzia?",
+      "message": "Actiunea este definitiva si nu vom putea sa recuperam inregistrarea."
+    },
+    "button": {
+      "continue": "Continua",
+      "delete": "Șterge",
+      "cancel": "Anulează",
+      "google": "Posteaza recenzia pe Google"
+    },
+    "back": "Înapoi",
+    "title": "Recenzie audio",
+    "recording": "Înregistrare în curs",
+    "startRecording": "Apasă pe buton pentru a începe înregistrarea",
+    "endRecording": "Apasă pe buton pentru a opri înregistrarea",
+    "error": {
+      "errorMessage": "Accesul la microfon a fost refuzat. Te rugăm să permiți accesul la microfon pentru a înregistra audio.",
+      "microphoneErrTitle": "Accesul la microfon este necesar",
+      "microphoneError": "Microfonul nu este accesibil. Te rugăm să permiți accesul la microfon pentru a înregistra audio.",
+      "audioCapture": "Eroare la capturarea audio. Te rugăm să verifici conexiunea microfonului.",
+      "button": {
+        "grant": "Permite accesul"
+      }
+    },
+    "confirmTitle": "Mulțumim că ai trimis recenzia!",
+    "confirmText": "Recenzia ta a fost salvată cu succes. O poți posta pe Google."
+  }
+}
