@@ -5,8 +5,9 @@ import { Provider } from "react-redux";
 import i18n from "./i18n";
 import AppContainer from "@/AppContainer";
 import createAppStore from "@/redux/store";
+import { defaultLanguage } from "./locales";
 
-export const render = (url = "/", language = "en") => {
+export const render = (url = "/", language = defaultLanguage) => {
   // Set the language for server-side rendering
   i18n.changeLanguage(language);
 
@@ -18,7 +19,7 @@ export const render = (url = "/", language = "en") => {
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <StaticRouter location={url}>
-          <AppContainer ssrStore={store} />
+          <AppContainer />
         </StaticRouter>
       </I18nextProvider>
     </Provider>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import placeHolder from "@/assets/review/main-pic.png"; // Placeholder image path
 import logo from "@/assets/Logo-brandbel.svg";
 import ReviewButton from "@/components/review/ButtonReview.jsx"; // Importing the ReviewButton component
@@ -15,17 +15,22 @@ function CreateReview() {
   const dispatch = useDispatch();
   const { reviewId } = useParams();
   const [speechRecognitionSupported, setSpeechRecognitionSupported] =
-    React.useState(false);
+    useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+    // Mark that we're on the client side
+    setIsClient(true);
 
-    if (!SpeechRecognition) {
-      alert("Your browser does not support audio reviews.");
-      return;
+    // Check for speech recognition support only on client side
+    if (typeof window !== "undefined") {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRecognition) {
+        setSpeechRecognitionSupported(true);
+      }
     }
-    setSpeechRecognitionSupported(true);
   }, []);
 
   return (

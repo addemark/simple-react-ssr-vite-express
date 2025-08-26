@@ -34,6 +34,7 @@ const i18nConfig = {
 if (!isServer) {
   // Client-side configuration
   const ssrLanguage = window.__SSR_LANGUAGE__;
+  console.log("88888888", ssrLanguage);
 
   if (ssrLanguage && !i18n.isInitialized) {
     // Use SSR language to prevent hydration mismatch - NO language detection
