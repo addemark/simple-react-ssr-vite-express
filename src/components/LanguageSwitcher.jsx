@@ -18,6 +18,13 @@ const LanguageSwitcher = () => {
     i18n.changeLanguage(languageCode);
   };
 
+  // Normalize language for comparison (e.g., "en-GB" -> "en")
+  const normalizeLanguage = (lang) => {
+    return lang ? lang.split("-")[0] : "";
+  };
+
+  const currentLanguage = normalizeLanguage(i18n.language);
+
   return (
     <div className="flex gap-2 mb-4">
       {languages.map((lang) => (
@@ -25,7 +32,7 @@ const LanguageSwitcher = () => {
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
           className={`px-3 py-1 rounded text-sm transition-colors ${
-            i18n.language === lang.code
+            currentLanguage === lang.code
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}

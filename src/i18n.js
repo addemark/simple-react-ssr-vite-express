@@ -33,21 +33,37 @@ const i18nConfig = {
 
 if (!isServer) {
   // Client-side configuration
-  i18n
-    .use(Backend)
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
+  const ssrLanguage = window.__SSR_LANGUAGE__;
+
+  if (ssrLanguage && !i18n.isInitialized) {
+    // Use SSR language to prevent hydration mismatch - NO language detection
+    i18n.use(initReactI18next).init({
       ...i18nConfig,
-      detection: {
-        order: ["querystring", "localStorage", "navigator", "htmlTag"],
-        lookupQuerystring: LANG_QUERY,
-        caches: ["localStorage"],
-      },
+      lng: ssrLanguage, // Set the language explicitly from SSR
     });
+
+    // Clean up the global variable
+    delete window.__SSR_LANGUAGE__;
+  } else if (!i18n.isInitialized) {
+    // Fallback to normal language detection if no SSR language
+    i18n
+      .use(Backend)
+      .use(LanguageDetector)
+      .use(initReactI18next)
+      .init({
+        ...i18nConfig,
+        detection: {
+          order: ["querystring", "localStorage", "navigator", "htmlTag"],
+          lookupQuerystring: LANG_QUERY,
+          caches: ["localStorage"],
+        },
+      });
+  }
 } else {
   // Server-side configuration
-  i18n.use(initReactI18next).init(i18nConfig);
+  if (!i18n.isInitialized) {
+    i18n.use(initReactI18next).init(i18nConfig);
+  }
 }
 
 export default i18n;

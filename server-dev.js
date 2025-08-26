@@ -22,7 +22,6 @@ app.use("*", async (req, res) => {
     // Detect language from Accept-Language header or query parameter
     const acceptLanguage = req.headers["accept-language"];
     const queryLang = req.query.lang;
-    console.log("*******Detected language:", queryLang || acceptLanguage);
 
     let language = defaultLanguage; // default language
 
@@ -41,7 +40,21 @@ app.use("*", async (req, res) => {
     );
     const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
 
-    const html = template.replace(`<!--outlet-->`, render(url, language));
+    const { html: appHtml, preloadedState } = render(url, language);
+
+    // Inject the preloaded state and language into the HTML
+    const stateScript = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(
+      preloadedState
+    ).replace(/</g, "\\u003c")}</script>`;
+
+    const languageScript = `<script>window.__SSR_LANGUAGE__ = ${JSON.stringify(
+      language
+    )};</script>`;
+
+    const html = template
+      .replace(`<!--outlet-->`, appHtml)
+      .replace(`</head>`, `${stateScript}${languageScript}</head>`);
+
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
   } catch (error) {
     console.error("SSR Error:", error);

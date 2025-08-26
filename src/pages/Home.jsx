@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import { Link } from "react-router";
 // import { useDispatch } from "react-redux";
 // import { addDataToFirebase } from "../redux/actions/projectActions";
 // import { ThunkDispatch } from "redux-thunk";
@@ -20,7 +21,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 //   UnknownAction
 // >;
 const Home = function () {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // const dispatch: DispatchType = useDispatch();
   // useEffect(() => {
@@ -84,6 +85,11 @@ const Home = function () {
           {t("Home.addEventButton")}
         </button>
       </div>
+      <Link
+        to={{ pathname: "/asd", search: `lang=${i18n.language.split("-")[0]}` }}
+      >
+        404Page
+      </Link>
     </div>
   );
 };
