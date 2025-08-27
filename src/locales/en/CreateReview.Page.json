@@ -1,0 +1,10 @@
+{
+  "content": {
+    "message": "Thanks for visiting regina maria",
+    "question": "How would you like to leave a review",
+    "button": {
+      "audio": "Leave an audio review",
+      "text": "Leave a text review"
+    }
+  }
+}

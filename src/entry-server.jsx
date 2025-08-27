@@ -5,9 +5,8 @@ import { Provider } from "react-redux";
 import i18n from "./i18n";
 import AppContainer from "@/AppContainer";
 import createAppStore from "@/redux/store";
-import { defaultLanguage } from "./locales";
 
-export const render = (url = "/", language = defaultLanguage) => {
+export const render = (url = "*", language) => {
   // Set the language for server-side rendering
   i18n.changeLanguage(language);
 

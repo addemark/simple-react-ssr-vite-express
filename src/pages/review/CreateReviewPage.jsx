@@ -9,8 +9,10 @@ import {
   setReviewDataIdAction,
   setReviewDataTypeAction,
 } from "@/redux/actions/reviewActions";
+import { useTranslation } from "react-i18next";
 
 function CreateReview() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { reviewId } = useParams();
@@ -40,13 +42,14 @@ function CreateReview() {
       </div>
       <img src={placeHolder} alt="imagine companie" className="mb-5" />
       <div className="flex flex-col w-full h-fit space-y-2 xl:space-x-4 overflow-x-scroll p-2 scrollbar-hidden">
-        <h6 className="text-center"> Multumim ca ai vizitat regina maria!</h6>
+        <h6 className="text-center"> {t("CreateReview.content.message")}</h6>
         <h1 className="text-white text-2xl text-center mb-10">
-          Cum iti doresti sa creezi o recenzie?
+          {t("CreateReview.content.question")}
         </h1>
 
         <ReviewButton
           type="text"
+          labelText={t("CreateReview.content.button.text")}
           onClick={() => {
             dispatch(setReviewDataIdAction(reviewId || ""));
             dispatch(setReviewDataTypeAction("text"));
@@ -54,9 +57,10 @@ function CreateReview() {
           }}
           className="mb-3"
         />
-        {speechRecognitionSupported && (
+        {speechRecognitionSupported && isClient && (
           <ReviewButton
             type="audio"
+            labelText={t("CreateReview.content.button.audio")}
             onClick={() => {
               dispatch(setReviewDataIdAction(reviewId || ""));
               navigate("/new-audio-review/" + reviewId);

@@ -1,1 +1,10 @@
-{}
+{
+  "content": {
+    "message": "Multumim ca ai vizitat regina maria",
+    "question": "Cum doresti sa creezi o recenzie",
+    "button": {
+      "audio": "Lasa o recenzie audio",
+      "text": "Lasa o recenzi text"
+    }
+  }
+}

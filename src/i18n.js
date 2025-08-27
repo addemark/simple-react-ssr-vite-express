@@ -53,6 +53,7 @@ if (!isServer) {
       .use(initReactI18next)
       .init({
         ...i18nConfig,
+        react: { useSuspense: false },
         detection: {
           order: [
             "querystring",

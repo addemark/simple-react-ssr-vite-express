@@ -7,7 +7,12 @@ const icons = {
   text: <img src={text} alt="Text Review Icon" className="h-5 w-5" />,
 };
 
-const ReviewButton = ({ type = "audio", onClick, className }) => {
+const ReviewButton = ({
+  type = "audio",
+  onClick,
+  className,
+  labelText = "",
+}) => {
   const label =
     type === "audio" ? "Lasa un review audio" : "Lasa un review text";
   const bg = type === "audio" ? "bg-purple-300" : "bg-lime-300";
@@ -21,7 +26,9 @@ const ReviewButton = ({ type = "audio", onClick, className }) => {
     >
       <div className="flex items-center space-x-15 w-xs">
         <div className="text-gray-700">{icons[type]}</div>
-        <span className="text-sm text-gray-800 text-center">{label}</span>
+        <span className="text-sm text-gray-800 text-center">
+          {labelText ?? label}
+        </span>
       </div>
       <ArrowRight className="h-5 w-5 text-gray-500" />
     </button>
