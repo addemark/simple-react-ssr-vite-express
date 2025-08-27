@@ -40,7 +40,7 @@ app.use("*", async (req, res) => {
     );
     const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
 
-    const { html: appHtml, preloadedState } = render(url, language);
+    const { html: appHtml, preloadedState } = await render(url, language);
 
     // Inject the preloaded state and language into the HTML
     const stateScript = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(

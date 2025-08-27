@@ -36,7 +36,7 @@ app.use("*", async (req, res) => {
     const template = fs.readFileSync("./dist/client/index.html", "utf-8");
     const { render } = await import("./dist/server/entry-server.js");
 
-    const { html: appHtml, preloadedState } = render(url, language);
+    const { html: appHtml, preloadedState } = await render(url, language);
 
     // Inject the preloaded state and language into the HTML
     const stateScript = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(

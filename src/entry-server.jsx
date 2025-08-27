@@ -6,9 +6,9 @@ import i18n from "./i18n";
 import AppContainer from "@/AppContainer";
 import createAppStore from "@/redux/store";
 
-export const render = (url = "*", language) => {
+export const render = async (url = "*", language) => {
   // Set the language for server-side rendering
-  i18n.changeLanguage(language);
+  await i18n.changeLanguage(language);
 
   // Create Redux store for SSR
   const store = createAppStore();

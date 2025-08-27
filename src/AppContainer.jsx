@@ -15,19 +15,19 @@ export default function AppContainer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const checkServerStatus = async () => {
-      try {
-        await axios.get("/server-status");
-      } catch (err) {
-        setError("Server is down. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const checkServerStatus = async () => {
+  //     try {
+  //       await axios.get("/server-status");
+  //     } catch (err) {
+  //       setError("Server is down. Please try again later.");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    checkServerStatus();
-  }, []);
+  //   checkServerStatus();
+  // }, []);
 
   if (loading || error) {
     return (

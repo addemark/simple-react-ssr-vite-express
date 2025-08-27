@@ -8,8 +8,6 @@ import validTranslation, {
 } from "./locales/index.js";
 
 const resources = {
-  //   "ro-RO": { translation: validTranslation.ro },
-  //   "en-US": { translation: validTranslation.en },
   ro: { translation: validTranslation.ro },
   en: { translation: validTranslation.en },
 };
@@ -34,7 +32,6 @@ const i18nConfig = {
 if (!isServer) {
   // Client-side configuration
   const ssrLanguage = window.__SSR_LANGUAGE__;
-  console.log("88888888", ssrLanguage);
 
   if (ssrLanguage && !i18n.isInitialized) {
     // Use SSR language to prevent hydration mismatch - NO language detection
@@ -62,7 +59,7 @@ if (!isServer) {
             "navigator",
             "htmlTag",
           ],
-          lookupQuerystring: "lang",
+          lookupQuerystring: LANG_QUERY,
           caches: ["localStorage", "cookie"], // <— persist language here
           // Keys (defaults shown)
           lookupLocalStorage: "i18nextLng",
