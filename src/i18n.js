@@ -54,9 +54,22 @@ if (!isServer) {
       .init({
         ...i18nConfig,
         detection: {
-          order: ["querystring", "localStorage", "navigator", "htmlTag"],
-          lookupQuerystring: LANG_QUERY,
-          caches: ["localStorage"],
+          order: [
+            "querystring",
+            "localStorage",
+            "cookie",
+            "navigator",
+            "htmlTag",
+          ],
+          lookupQuerystring: "lang",
+          caches: ["localStorage", "cookie"], // <— persist language here
+          // Keys (defaults shown)
+          lookupLocalStorage: "i18nextLng",
+          lookupCookie: "i18next",
+          cookieMinutes: 60 * 24 * 365, // 1 year
+          cookieSameSite: "lax",
+          // Clean/normalize the detected value
+          cleanCode: true, // strips spaces, normalizes case
         },
       });
   }
